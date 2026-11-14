@@ -42,6 +42,12 @@ export type HourFormat = '12h' | '24h';
 interface SheetColumnBaseDefinition {
   id: string;
   label: string;
+  /**
+   * Help for the person importing: what goes in the column and how to fill
+   * it in. Shown on the upload screen, beside the mapped column while mapping,
+   * and on the column's header in the sheet. Line breaks are kept.
+   */
+  description?: string;
   suggestedMappingKeywords?: string[];
   isReadOnly?: boolean;
   validators?: ImporterValidatorDefinition[];
