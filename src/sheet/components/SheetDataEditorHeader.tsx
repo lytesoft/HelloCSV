@@ -1,7 +1,12 @@
 import { useTranslations } from '../../i18';
 import { fieldIsRequired } from '../../validators';
 import { SheetColumnDefinition } from '../types';
-import { PencilIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import {
+  InformationCircleIcon,
+  PencilIcon,
+  XMarkIcon,
+} from '@heroicons/react/24/outline';
+import { Tooltip } from '../../components';
 import { isColumnReadOnly } from '../utils';
 
 interface Props {
@@ -25,6 +30,14 @@ export default function SheetDataEditorHeader({ column }: Props) {
         </div>
       )}
       {column.label} {fieldIsRequired(column) && '*'}
+      {column.description && (
+        <Tooltip tooltipText={column.description} className="hc:ml-1.5">
+          <InformationCircleIcon
+            aria-hidden="true"
+            className="hc:text-hello-csv-text-muted hc:size-4"
+          />
+        </Tooltip>
+      )}
     </div>
   );
 }

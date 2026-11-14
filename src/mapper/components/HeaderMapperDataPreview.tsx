@@ -1,21 +1,34 @@
-import { ImporterOutputFieldType } from '../../types';
+import { ImporterOutputFieldType, SheetColumnDefinition } from '../../types';
 import { useTranslations } from '../../i18';
 import { Badge } from '../../../src/components';
 
 interface Props {
   examples: ImporterOutputFieldType[] | null;
   csvHeader: string | null;
+  /** The column the header is mapped to, if any. */
+  column?: SheetColumnDefinition;
 }
 
 export default function HeaderMapperDataPreview({
   examples,
   csvHeader,
+  column,
 }: Props) {
   const { t, tHtml } = useTranslations();
 
   return (
     csvHeader && (
       <div className="hc:border-hello-csv-border-strong hc:bg-hello-csv-surface hc:m-4 hc:rounded-sm hc:border hc:px-4 hc:sm:px-6 hc:lg:px-8">
+        {column?.description && (
+          <div className="hc:border-hello-csv-border-strong hc:border-b hc:py-4 hc:text-sm">
+            <div className="hc:text-hello-csv-text hc:font-semibold">
+              {column.label}
+            </div>
+            <p className="hc:text-hello-csv-text-muted hc:mt-1 hc:whitespace-pre-line">
+              {column.description}
+            </p>
+          </div>
+        )}
         <div className="hc:mt-6 hc:flow-root">
           <div className="hc:-mx-4 hc:-my-2 hc:overflow-x-auto hc:sm:-mx-6 hc:lg:-mx-8">
             <div className="hc:inline-block hc:min-w-full hc:py-2 hc:align-middle">

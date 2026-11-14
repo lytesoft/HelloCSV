@@ -45,6 +45,15 @@ export default function HeaderMapper({
     currentMapping
   );
 
+  const hoveredMapping = currentMapping.find(
+    (mapping) => mapping.csvColumnName === hoveredCsvHeader
+  );
+  const hoveredColumn = hoveredMapping
+    ? sheetDefinitions
+        .find((sheet) => sheet.id === hoveredMapping.sheetId)
+        ?.columns.find((column) => column.id === hoveredMapping.sheetColumnId)
+    : undefined;
+
   const hoveredExamples = useMemo(() => {
     if (!hoveredCsvHeader) return [];
     return calculateMappingExamples(data, hoveredCsvHeader);
@@ -108,6 +117,7 @@ export default function HeaderMapper({
             <HeaderMapperDataPreview
               examples={hoveredExamples}
               csvHeader={hoveredCsvHeader ?? ''}
+              column={hoveredColumn}
             />
           </div>
         </div>
