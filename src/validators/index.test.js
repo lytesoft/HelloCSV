@@ -106,6 +106,10 @@ describe('IntegerValidator', () => {
     const validator = buildValidatorFromDefinition({ validate: 'is_integer' });
     expect(validator.isValid(0)).toEqual(undefined);
     expect(validator.isValid(1)).toEqual(undefined);
+    expect(validator.isValid(-3)).toEqual(undefined);
+    expect(validator.isValid(3.5)).toEqual('validators.integer');
+    expect(validator.isValid(0.1)).toEqual('validators.integer');
+    expect(validator.isValid(Infinity)).toEqual('validators.integer');
     expect(validator.isValid('2')).toEqual('validators.integer');
     expect(validator.isValid(null)).toEqual('validators.integer');
     expect(validator.isValid(NaN)).toEqual('validators.integer');

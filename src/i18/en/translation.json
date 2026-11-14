@@ -114,7 +114,7 @@
   "validators": {
     "boolean": "This value must be true or false",
     "includes": "Value is not in the list of allowed values",
-    "integer": "This is not a valid number",
+    "integer": "This must be a whole number",
     "multiIncludes": "This value is not valid",
     "regex": "This value is invalid",
     "required": "This value is required",
