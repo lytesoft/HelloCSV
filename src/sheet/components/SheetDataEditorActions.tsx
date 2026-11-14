@@ -1,3 +1,4 @@
+import { ReactNode } from 'preact/compat';
 import { useState } from 'preact/hooks';
 import {
   ButtonGroup,
@@ -85,9 +86,6 @@ export default function SheetDataEditorActions({
   const [resetConfirmationModalOpen, setResetConfirmationModalOpen] =
     useState(false);
 
-  const disabledButtonClasses =
-    'hc:pointer-events-none hc:cursor-not-allowed hc:opacity-50';
-
   function errorFilterOption(columnId: string) {
     const columnDefinition = sheetDefinition.columns.find(
       (c) => c.id === columnId
@@ -172,25 +170,23 @@ export default function SheetDataEditorActions({
         {availableActions.includes('undoRedo') && (
           <>
             <Tooltip tooltipText={t('sheet.undoTooltip')}>
-              <ArrowUturnLeftIcon
-                role="button"
-                tabIndex={0}
-                aria-label={t('sheet.undoTooltip')}
-                aria-disabled={!canUndo}
-                className={`hc:h-6 hc:w-6 ${canUndo ? 'hc:cursor-pointer' : disabledButtonClasses}`}
-                onClick={() => canUndo && undo()}
-              />
+              <ToolbarButton
+                label={t('sheet.undoTooltip')}
+                disabled={!canUndo}
+                onClick={undo}
+              >
+                <ArrowUturnLeftIcon aria-hidden="true" />
+              </ToolbarButton>
             </Tooltip>
 
             <Tooltip tooltipText={t('sheet.redoTooltip')}>
-              <ArrowUturnRightIcon
-                role="button"
-                tabIndex={0}
-                aria-label={t('sheet.redoTooltip')}
-                aria-disabled={!canRedo}
-                className={`hc:h-6 hc:w-6 ${canRedo ? 'hc:cursor-pointer' : disabledButtonClasses}`}
-                onClick={() => canRedo && redo()}
-              />
+              <ToolbarButton
+                label={t('sheet.redoTooltip')}
+                disabled={!canRedo}
+                onClick={redo}
+              >
+                <ArrowUturnRightIcon aria-hidden="true" />
+              </ToolbarButton>
             </Tooltip>
           </>
         )}
@@ -203,35 +199,36 @@ export default function SheetDataEditorActions({
                 : 'sheet.removeRowsTooltip'
             )}
           >
-            <TrashIcon
-              role="button"
-              tabIndex={0}
-              aria-label={t(
+            <ToolbarButton
+              label={t(
                 selectedRows.length <= 0
                   ? 'sheet.removeRowsTooltipNoRowsSelected'
                   : 'sheet.removeRowsTooltip'
               )}
-              className={`hc:h-6 hc:w-6 ${selectedRows.length > 0 ? 'hc:cursor-pointer' : disabledButtonClasses}`}
+              disabled={selectedRows.length <= 0}
               onClick={() => setRemoveConfirmationModalOpen(true)}
-            />
+            >
+              <TrashIcon aria-hidden="true" />
+            </ToolbarButton>
           </Tooltip>
         )}
 
         {availableActions.includes('addRows') && (
           <Tooltip tooltipText={t('sheet.addRowsTooltip')}>
-            <PlusIcon
-              className="hc:h-6 hc:w-6 hc:cursor-pointer"
+            <ToolbarButton
+              label={t('sheet.addRowsTooltip')}
               onClick={addEmptyRow}
-            />
+            >
+              <PlusIcon aria-hidden="true" />
+            </ToolbarButton>
           </Tooltip>
         )}
 
         {availableActions.includes('downloadCsv') && (
           <Tooltip tooltipText={t('sheet.downloadSheetTooltip')}>
-            <ArrowDownTrayIcon
-              className={`hc:h-6 hc:w-6 ${
-                rowData.length > 0 ? 'hc:cursor-pointer' : disabledButtonClasses
-              }`}
+            <ToolbarButton
+              label={t('sheet.downloadSheetTooltip')}
+              disabled={rowData.length <= 0}
               onClick={() =>
                 downloadSheetAsCsv(
                   sheetDefinition,
@@ -240,7 +237,9 @@ export default function SheetDataEditorActions({
                   csvDownloadMode
                 )
               }
-            />
+            >
+              <ArrowDownTrayIcon aria-hidden="true" />
+            </ToolbarButton>
           </Tooltip>
         )}
 
@@ -302,5 +301,37 @@ export default function SheetDataEditorActions({
         )}
       </div>
     </div>
+  );
+}
+
+interface ToolbarButtonProps {
+  label: string;
+  disabled?: boolean;
+  onClick: () => void;
+  children: ReactNode;
+}
+
+// A real <button>, so the toolbar actions can be reached and pressed with the
+// keyboard (Tab, then Enter or Space) and are announced as buttons.
+function ToolbarButton({
+  label,
+  disabled = false,
+  onClick,
+  children,
+}: ToolbarButtonProps) {
+  return (
+    <button
+      type="button"
+      aria-label={label}
+      disabled={disabled}
+      onClick={onClick}
+      className={`hc:block hc:h-6 hc:w-6 hc:rounded-sm hc:focus-visible:outline-2 hc:focus-visible:outline-offset-2 hc:focus-visible:outline-hello-csv-primary ${
+        disabled
+          ? 'hc:pointer-events-none hc:cursor-not-allowed hc:opacity-50'
+          : 'hc:cursor-pointer'
+      }`}
+    >
+      {children}
+    </button>
   );
 }

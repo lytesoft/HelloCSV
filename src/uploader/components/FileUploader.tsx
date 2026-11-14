@@ -104,10 +104,8 @@ export default function FileUploader({ setFile, onEnterDataManually }: Props) {
           )}
           {allowManualDataEntry && (
             <div className="hc:mt-3 hc:text-sm">
-              <p
-                role="button"
-                tabIndex={0}
-                aria-label={t('uploader.enterManually')}
+              <button
+                type="button"
                 onClick={(e) => {
                   e.stopPropagation();
                   onEnterDataManually?.();
@@ -115,7 +113,7 @@ export default function FileUploader({ setFile, onEnterDataManually }: Props) {
                 className="hc:text-hello-csv-primary hc:hover:text-hello-csv-primary hc:cursor-pointer hc:decoration-2 hc:opacity-90 hc:hover:underline hc:focus:underline hc:focus:outline-none"
               >
                 {t('uploader.enterManually')}
-              </p>
+              </button>
             </div>
           )}
         </div>
