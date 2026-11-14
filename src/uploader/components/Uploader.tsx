@@ -19,7 +19,7 @@ export default function Uploader({
 
   return (
     <div className="hc:flex hc:h-full hc:flex-col hc:space-y-4">
-      <div className="hc:flex-none hc:text-2xl">
+      <div className="hello-csv-title hc:flex-none hc:text-2xl">
         {t('uploader.uploadAFile')}
       </div>
       <div className="hc:flex-auto hc:md:min-h-0">

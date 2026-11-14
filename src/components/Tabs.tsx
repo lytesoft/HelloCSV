@@ -40,7 +40,11 @@ export default function Tabs({
                 aria-current={tab.value === activeTab ? 'page' : undefined}
                 aria-controls={`${idPrefix}-tabpanel-${tab.value}`}
                 onClick={() => onTabChange(tab.value)}
-                className={` ${
+                className={`${
+                  tab.value === activeTab
+                    ? 'hello-csv-tab hello-csv-tab-active'
+                    : 'hello-csv-tab'
+                } ${
                   tab.value === activeTab
                     ? 'hc:border-hello-csv-primary hc:text-hello-csv-primary'
                     : 'hc:text-hello-csv-text-muted hc:hover:border-hello-csv-border-strong hc:hover:text-hello-csv-text hc:border-transparent'

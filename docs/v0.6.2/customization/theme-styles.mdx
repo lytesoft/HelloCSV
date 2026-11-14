@@ -123,3 +123,27 @@ The importer ships with a few ready-made variants. Select one with the
 ```tsx
 <Importer theme="theme-1" sheets={...} />
 ```
+
+## Class names for your own styles
+
+The colors above are the only theme settings. To restyle more than color, for example to give the importer's buttons
+your app's own button styles, target these class names. They stay the same across releases, unlike the utility classes
+the components are built with.
+
+| Class name                              | Element                                                         |
+| --------------------------------------- | --------------------------------------------------------------- |
+| `hello-csv-button`                      | Every button (Upload, Back, Confirm, Browse files...)           |
+| `hello-csv-button-<variant>`            | Its variant: `primary`, `secondary`, `tertiary`, `success` or `danger` |
+| `hello-csv-button-group`                | The All / Valid / Invalid switch above the sheet                |
+| `hello-csv-button-group-item`           | Each button in it, plus `hello-csv-button-group-item-active`     |
+| `hello-csv-title`                       | The heading of each step                                        |
+| `hello-csv-subtitle`                    | The heading of the import summary                               |
+| `hello-csv-tab`                         | Each sheet tab, plus `hello-csv-tab-active`                     |
+| `hello-csv-input`                       | Text inputs and dropdowns                                       |
+| `hello-csv-alert`                       | Alerts, plus `hello-csv-alert-<variant>`: `info`, `success`, `error` or `warning` |
+| `hello-csv-badge`                       | Badges, e.g. the file's column names while mapping              |
+| `hello-csv-card`                        | Cards, e.g. the file drop area                                  |
+
+The importer's own styles are in CSS cascade layers, so a rule of yours outside a layer wins over them whatever its
+specificity. That also means a global rule in your app, such as a CSS reset that styles every `button`, applies inside
+the importer too.

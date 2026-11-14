@@ -65,7 +65,7 @@ export default function Alert({
   const { icon, classes } = baseClasses[variant];
 
   return (
-    <div className={classes}>
+    <div className={`hello-csv-alert hello-csv-alert-${variant} ${classes}`}>
       <div className="hc:flex">
         <div className="hc:mt-1 hc:shrink-0">{icon}</div>
         <div className="hc:ml-3">

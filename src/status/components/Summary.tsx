@@ -14,7 +14,7 @@ export default function Summary({ completedWithErrors, enumLabelDict }: Props) {
   return (
     <Card withPadding={false} className="hc:h-full">
       <div className="hc:flex hc:flex-col hc:py-5">
-        <div className="hc:px-4 hc:pb-2 hc:text-xl">
+        <div className="hello-csv-subtitle hc:px-4 hc:pb-2 hc:text-xl">
           {t('importStatus.importDetails')}
         </div>
         <div className="hc:text-hello-csv-text-muted hc:px-4 hc:pb-2 hc:text-sm">
