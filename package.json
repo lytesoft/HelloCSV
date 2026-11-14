@@ -109,7 +109,10 @@
     "vitest": "^3.0.5"
   },
   "files": [
-    "dist"
+    "dist",
+    "react/package.json",
+    "preact/package.json",
+    "bundled/package.json"
   ],
   "dependencies": {
     "@headlessui/react": "^2.2.0",

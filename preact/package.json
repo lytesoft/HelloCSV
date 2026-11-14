@@ -1,0 +1,6 @@
+{
+  "private": true,
+  "main": "../dist/preact/index.cjs.js",
+  "module": "../dist/preact/index.es.js",
+  "types": "../dist/types-preact/index.d.ts"
+}
