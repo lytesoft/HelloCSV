@@ -85,9 +85,8 @@ const Input = forwardRef<HTMLInputElement, Props>(
         })}
 
         {displayClearIcon && (
-          <span
-            role="button"
-            tabIndex={0}
+          <button
+            type="button"
             aria-label={t('components.input.clear')}
             onClick={(e) => {
               e.stopPropagation();
@@ -99,7 +98,7 @@ const Input = forwardRef<HTMLInputElement, Props>(
               className="hc:text-hello-csv-text-muted hc:hover:text-hello-csv-text hc:h-5 hc:w-5"
               aria-hidden="true"
             />
-          </span>
+          </button>
         )}
       </div>
     );

@@ -200,9 +200,8 @@ export default function Select<T>({
         </ComboboxButton>
 
         {clearButtonDisplayed && (
-          <span
-            role="button"
-            tabIndex={0}
+          <button
+            type="button"
             aria-label={t('components.select.clear')}
             // Prevent the input from blurring and headlessui's outside-click
             // handler from firing — both would close the dropdown and (in grid
@@ -221,7 +220,7 @@ export default function Select<T>({
               className="hc:text-hello-csv-text-muted hc:hover:text-hello-csv-text hc:h-5 hc:w-5"
               aria-hidden="true"
             />
-          </span>
+          </button>
         )}
         <ComboboxButton className="hc:absolute hc:inset-y-0 hc:right-0 hc:flex hc:cursor-pointer hc:items-center hc:pr-2">
           <ChevronUpDownIcon

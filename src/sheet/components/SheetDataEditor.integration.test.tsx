@@ -540,9 +540,9 @@ describe('SheetDataEditor keyboard grid', () => {
     // Type a filter so the ✕ appears.
     fireEvent.input(input, { target: { value: 'Sal' } });
 
-    const clearBtn = Array.from(
-      cellAt(0, 0).querySelectorAll('[role="button"]')
-    ).find((el) => (el.getAttribute('aria-label') || '').match(/clear/i))!;
+    const clearBtn = Array.from(cellAt(0, 0).querySelectorAll('button')).find(
+      (el) => (el.getAttribute('aria-label') || '').match(/clear/i)
+    )!;
     expect(clearBtn).toBeTruthy();
     fireEvent.mouseDown(clearBtn);
     fireEvent.click(clearBtn);
