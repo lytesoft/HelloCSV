@@ -1,0 +1,6 @@
+{
+  "private": true,
+  "main": "../dist/react/index.cjs.js",
+  "module": "../dist/react/index.es.js",
+  "types": "../dist/types-react/index.d.ts"
+}
