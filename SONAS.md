@@ -8,6 +8,7 @@ Upstream v0.6.2 plus these changes, each also offered upstream as its own pull r
 - `is_integer` rejects numbers with a fraction.
 - `react/`, `preact/` and `bundled/` have fallback package.json files, so Meteor 2 can import `hello-csv/bundled`.
 - Columns can have a `description`, shown on the upload screen, while mapping and on the sheet header.
+- Buttons, headings, tabs, inputs, alerts, badges and cards carry stable `hello-csv-*` class names, so sonas gives them its own `.btn` and heading styles.
 
 Drop a commit here once upstream has released it.
 
