@@ -1,6 +1,6 @@
 {
   "name": "hello-csv",
-  "version": "0.6.2",
+  "version": "0.6.2-sonas.1",
   "description": "A modern CSV importer written in Preact",
   "author": "HelloCSV",
   "license": "MIT",
@@ -34,7 +34,6 @@
     "watch": "npm-run-all --parallel watch:preact watch:bundled watch:react",
     "test": "vitest",
     "preview": "vite preview",
-    "prepare": "tsc --emitDeclarationOnly",
     "prepublishOnly": "npm run build",
     "predeploy": "cd example-preact && npm install && npm run build",
     "deploy": "gh-pages -d example-preact/dist",

@@ -1,0 +1,158 @@
+declare const _default: {
+  "components": {
+    "confirmationModal": {
+      "defaultConfirm": "Confirmer",
+      "cancel": "Annuler"
+    },
+    "select": {
+      "optionPlaceholder": "Sélectionnez une option",
+      "noOptions": "Pas d'options",
+      "clear": "Effacer",
+      "invalidOption": "{{value}} (invalide)"
+    },
+    "input": {
+      "clear": "Effacer"
+    },
+    "datePicker": {
+      "calendarLabel": "Choisir une date",
+      "pickerLabel": "Sélecteur de date",
+      "hours": "Heures",
+      "minutes": "Minutes",
+      "seconds": "Secondes",
+      "today": "Aujourd'hui",
+      "clear": "Effacer",
+      "done": "Terminé",
+      "weekdays": {
+        "sun": "Di",
+        "mon": "Lu",
+        "tue": "Ma",
+        "wed": "Me",
+        "thu": "Je",
+        "fri": "Ve",
+        "sat": "Sa"
+      },
+      "previous": "Précédent",
+      "next": "Suivant",
+      "am": "AM",
+      "pm": "PM"
+    }
+  },
+  "importer": {
+    "upload": "Télécharger",
+    "uploadBlocked": "Vos données comportent des erreurs de validation. Corrigez-les avant de les télécharger.",
+    "rowLimitExceeded": "« {{sheet}} » comporte {{count}} lignes, ce qui dépasse le maximum de {{limit}}. Supprimez des lignes pour continuer.",
+    "rowLimitExceededMultiple": "Ces feuilles dépassent leur limite de lignes : {{sheets}}. Supprimez des lignes pour continuer.",
+    "sheetValidationErrors": "Cette feuille comporte des erreurs de validation. Corrigez-les avant de télécharger.",
+    "processing": "Traitement des données, veuillez patienter…",
+    "back": "Retour",
+    "loader": {
+      "failed": "Quelque chose a mal tourné",
+      "uploading": "Téléchargement en cours",
+      "success": "Succès",
+      "retry": "Réessayer",
+      "backToPreview": "Retour à modifier"
+    },
+    "backToMappingConfirmation": {
+      "title": "Êtes-vous sûr ?",
+      "subTitle": "Cela annulera toutes les modifications effectuées après le mappage des données",
+      "confirmationText": "Oui, revenir en arrière",
+      "cancelText": "Non, rester ici"
+    }
+  },
+  "uploader": {
+    "uploadAFile": "Télécharger un fichier",
+    "requiredColumns": "Colonnes requises",
+    "optionalColumns": "Colonnes optionnelles",
+    "requiredColumnsTooltip": "Cette colonne est requise pour l'importation",
+    "optionalColumnsTooltip": "Cette colonne est optionnelle pour l'importation",
+    "importerInformation": "Assurez-vous que votre fichier inclut toutes les colonnes requises.",
+    "dragAndDrop": "Glissez et déposez votre fichier ici",
+    "maxFileSizeInBytes": "Limite {{size}}",
+    "browseFiles": "Parcourir les fichiers",
+    "enterManually": "Ou saisissez vos données manuellement",
+    "unsupportedFileType": "Type de fichier non pris en charge. Veuillez télécharger un fichier {{formats}}.",
+    "fileTooLarge": "Le fichier est trop volumineux. La taille maximale est {{size}}."
+  },
+  "mapper": {
+    "numberRowsImported": "{{count}} lignes importées",
+    "back": "Retour",
+    "confirm": "Confirmer",
+    "noData": "Aucune donnée prévue",
+    "unused": "Non utilisées",
+    "used": "Utilisées",
+    "importedColumn": "Colonne importée",
+    "destinationColumn": "Colonne de destination",
+    "dataPreview": "Aperçu des données pour {{csvHeader}}",
+    "mappingsNotValid": "Veuillez définir toutes les mappings requis",
+    "reviewAndConfirm": "Revoir et confirmer chaque mapping"
+  },
+  "sheet": {
+    "sheetTitle": "Données importées",
+    "validationPassed": "Toutes les lignes passent la validation !",
+    "removeConfirmationModalTitle": "Supprimer les lignes",
+    "removeConfirmationModalConfirmationText": "Supprimer",
+    "removeConfirmationModalSubTitle": "Êtes-vous sûr de vouloir supprimer {{rowsCount}} lignes ?",
+    "readOnly": "Lecture seule",
+    "editTooltip": "Double-cliquez pour modifier",
+    "all": "Toutes",
+    "valid": "Valides",
+    "invalid": "Invalides",
+    "filterByError": "Filtrer par erreur",
+    "search": "Recherche",
+    "removeRowsTooltip": "Supprimer les lignes",
+    "removeRowsTooltipNoRowsSelected": "Veuillez sélectionner au moins un enregistrement avant de le supprimer",
+    "addRowsTooltip": "Ajouter une nouvelle ligne",
+    "downloadSheetTooltip": "Télécharger cette feuille",
+    "undoTooltip": "Annuler",
+    "redoTooltip": "Rétablir",
+    "reset": "Recommencer",
+    "resetTooltip": "Recommencer",
+    "resetConfirmationModalTitle": "Recommencer",
+    "resetConfirmationModalConfirmationText": "Recommencer",
+    "resetConfirmationModalSubTitle": "Êtes-vous sûr de vouloir recommencer ? Cela supprimera toutes les données et réinitialisera la feuille à son état initial."
+  },
+  "validators": {
+    "boolean": "Cette valeur doit être vraie ou fausse",
+    "includes": "La valeur n'est pas dans la liste des valeurs autorisées",
+    "integer": "Ce n'est pas un nombre valide",
+    "multiIncludes": "Cette valeur n'est pas valide",
+    "regex": "Cette valeur est invalide",
+    "required": "Cette valeur est obligatoire",
+    "unique": "Cette valeur n'est pas unique",
+    "date": "Cette date n'est pas valide",
+    "datetime": "Cette date et heure ne sont pas valides",
+    "time": "Cette heure n'est pas valide",
+    "dateOutOfRange": "Cette date est en dehors de la plage autorisée",
+    "asyncError": "Cette valeur n'a pas pu être validée"
+  },
+  "importStatus": {
+    "success": "Importation réussie",
+    "importSuccessful": "Importation réussie",
+    "importSuccessfulWithErrors": "Importation réussie avec erreurs",
+    "successDescription": "{{count}} enregistrements ont été importés avec succès",
+    "successDescriptionWithStats": "{{recordsImported}} sur {{totalRecords}} enregistrements ont été importés avec succès",
+    "error": "Importation échouée",
+    "errorDescription": "Une erreur est survenue lors de l'importation. Veuillez réessayer",
+    "importFailed": "Importation échouée",
+    "failedDescription": "Une erreur est survenue lors de l'importation. Veuillez réessayer",
+    "importDetails": "Détails de l'importation",
+    "importDetailsDescription": "Détails sur votre dernière importation",
+    "fileInformation": "Informations sur le fichier",
+    "dataEnteredManually": "Données saisies manuellement",
+    "original": "Original",
+    "processed": "Traité",
+    "downloadProcessedData": "Télécharger les données traitées",
+    "importResults": "Résultats de l'importation",
+    "totalRows": "{{totalRows}} enregistrements",
+    "status": "Statut",
+    "failed": "Échoué",
+    "dataImport": "Importation de données",
+    "statisticsSkipped": "{{skipped}} ignorés",
+    "statisticsFailed": "{{failed}} échoués",
+    "statisticsImported": "{{imported}} importés",
+    "continue": "Continuer"
+  }
+}
+;
+
+export default _default;
