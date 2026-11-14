@@ -189,4 +189,44 @@ describe('buildSuggestedHeaderMappings', () => {
     );
     expect(nameMapping.sheetColumnId).toEqual('name');
   });
+
+  it('matches a header to a column label when no id or keyword matches', () => {
+    const translated = [
+      {
+        id: 'people',
+        label: 'Personas',
+        columns: [
+          { label: 'Nombre', id: 'name' },
+          { label: 'Correo electrónico', id: 'email' },
+        ],
+      },
+    ];
+
+    const mappings = buildSuggestedHeaderMappings(translated, [
+      'Nombre',
+      'correo electrónico',
+    ]);
+
+    expect(mappings.map((m) => [m.csvColumnName, m.sheetColumnId])).toEqual([
+      ['Nombre', 'name'],
+      ['correo electrónico', 'email'],
+    ]);
+  });
+
+  it('prefers an id or keyword match over another column label', () => {
+    const ambiguous = [
+      {
+        id: 'contacts',
+        label: 'Contacts',
+        columns: [
+          { label: 'Email', id: 'primary_email' },
+          { label: 'Work email', id: 'email' },
+        ],
+      },
+    ];
+
+    const [mapping] = buildSuggestedHeaderMappings(ambiguous, ['Email']);
+
+    expect(mapping.sheetColumnId).toEqual('email');
+  });
 });

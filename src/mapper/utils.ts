@@ -31,21 +31,24 @@ function buildSheetSuggestedHeaderMappings(
 ): ColumnMapping[] {
   const mappings: ColumnMapping[] = [];
 
+  const mappableColumns = sheet.columns.filter(allowUserToMapColumn);
+
   csvHeaders.forEach((header) => {
-    const foundField = sheet.columns.find((column) => {
-      if (!allowUserToMapColumn(column)) {
-        return false;
-      }
+    const normalizedHeader = normalizeValue(header);
 
-      const keywords = [
-        column.id,
-        ...(column.suggestedMappingKeywords || []),
-      ].map((k) => normalizeValue(k));
-
-      const normalizedHeader = normalizeValue(header);
-
-      return keywords.includes(normalizedHeader);
-    });
+    // A header matches a column's id or keywords first. Failing that, it
+    // matches a column's label: files are often exported with the same
+    // headers the importer shows, and labels may be translated while ids
+    // are not.
+    const foundField =
+      mappableColumns.find((column) =>
+        [column.id, ...(column.suggestedMappingKeywords || [])]
+          .map((k) => normalizeValue(k))
+          .includes(normalizedHeader)
+      ) ??
+      mappableColumns.find(
+        (column) => normalizeValue(column.label) === normalizedHeader
+      );
 
     if (!foundField) {
       return;
