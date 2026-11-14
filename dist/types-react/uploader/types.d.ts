@@ -2,6 +2,7 @@ export type ImporterRequirementType = {
     sheetId: string;
     columnId: string;
     columnLabel: string;
+    columnDescription?: string;
 };
 export type ImporterRequirementsType = {
     required: ImporterRequirementType[];
