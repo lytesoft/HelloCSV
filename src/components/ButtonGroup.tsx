@@ -57,14 +57,18 @@ const buttonStyles = cva(
 
 export default function ButtonGroup({ activeButton, buttons }: Props) {
   return (
-    <span className="hc:isolate hc:inline-flex hc:rounded-md hc:shadow-xs">
+    <span className="hello-csv-button-group hc:isolate hc:inline-flex hc:rounded-md hc:shadow-xs">
       {buttons.map((button, index) => (
         <button
           key={button.value}
           type="button"
           onClick={button.onClick}
           aria-current={button.value === activeButton}
-          className={buttonStyles({
+          className={`${
+            button.value === activeButton
+              ? 'hello-csv-button-group-item hello-csv-button-group-item-active'
+              : 'hello-csv-button-group-item'
+          } ${buttonStyles({
             active: button.value === activeButton,
             variant: button.variant,
             location:
@@ -73,7 +77,7 @@ export default function ButtonGroup({ activeButton, buttons }: Props) {
                 : index === buttons.length - 1
                   ? 'right'
                   : 'center',
-          })}
+          })}`}
         >
           {button.label}
         </button>

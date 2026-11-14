@@ -25,7 +25,7 @@ export default function Completed({ resetState, enumLabelDict }: Props) {
 
   return (
     <div className="hc:flex hc:h-full hc:flex-col">
-      <div className="hc:flex-none hc:text-2xl">
+      <div className="hello-csv-title hc:flex-none hc:text-2xl">
         {t('importStatus.dataImport')}
       </div>
       <div className="hc:grow hc:overflow-auto">

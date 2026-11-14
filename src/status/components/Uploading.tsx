@@ -30,7 +30,7 @@ export default function Completed({ resetState }: Props) {
                 <div className="hc:absolute hc:inset-0 hc:flex hc:items-center hc:justify-center">
                   <b className="hc:text-lg">{progress}%</b>
                 </div>
-                <h2 className="hc:text-2xl">
+                <h2 className="hello-csv-title hc:text-2xl">
                   {t('importer.loader.uploading')}
                 </h2>
               </div>
@@ -39,7 +39,9 @@ export default function Completed({ resetState }: Props) {
           </div>
           {!pending && (
             <div className="hc:flex hc:flex-col hc:items-center">
-              <h2 className="hc:text-2xl">{t('importer.loader.success')}</h2>
+              <h2 className="hello-csv-title hc:text-2xl">
+                {t('importer.loader.success')}
+              </h2>
               <div className="hc:h-5" />
               <Button variant="secondary" onClick={resetState}>
                 {t('sheet.reset')}

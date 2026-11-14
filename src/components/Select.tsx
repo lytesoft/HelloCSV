@@ -189,7 +189,7 @@ export default function Select<T>({
           <ComboboxInput
             {...PASSWORD_MANAGER_IGNORE_PROPS}
             ref={inputRef}
-            className={`${classes} hc:focus:outline-hello-csv-primary hc:bg-hello-csv-surface hc:block hc:w-full hc:cursor-pointer hc:truncate hc:rounded-md hc:py-1.5 hc:focus:cursor-text ${clearButtonDisplayed ? 'hc:pr-12' : 'hc:pr-2'} hc:text-hello-csv-text hc:outline-hello-csv-border-strong hc:pl-3 hc:text-left hc:outline-1 hc:-outline-offset-1 hc:focus:outline-2 hc:focus:-outline-offset-2 hc:sm:text-sm`}
+            className={`hello-csv-input ${classes} hc:focus:outline-hello-csv-primary hc:bg-hello-csv-surface hc:block hc:w-full hc:cursor-pointer hc:truncate hc:rounded-md hc:py-1.5 hc:focus:cursor-text ${clearButtonDisplayed ? 'hc:pr-12' : 'hc:pr-2'} hc:text-hello-csv-text hc:outline-hello-csv-border-strong hc:pl-3 hc:text-left hc:outline-1 hc:-outline-offset-1 hc:focus:outline-2 hc:focus:-outline-offset-2 hc:sm:text-sm`}
             displayValue={getDisplayValue}
             onChange={(event) =>
               searchable && setQuery((event.target as HTMLInputElement).value)

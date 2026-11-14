@@ -28,7 +28,7 @@ const baseClasses = cva(
 );
 
 export default function Badge({ children, variant }: Props) {
-  const componentClassName = baseClasses({ variant });
+  const componentClassName = `hello-csv-badge ${baseClasses({ variant })}`;
 
   return <div className={componentClassName}>{children}</div>;
 }

@@ -33,7 +33,10 @@ const Card = forwardRef<HTMLDivElement, Props>(
     const componentClassName = baseClasses({ variant, withPadding });
 
     return (
-      <div ref={ref} className={`${componentClassName} ${className}`}>
+      <div
+        ref={ref}
+        className={`hello-csv-card ${componentClassName} ${className ?? ''}`}
+      >
         {children}
       </div>
     );

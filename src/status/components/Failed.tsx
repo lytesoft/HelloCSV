@@ -18,7 +18,9 @@ export default function Failed({
 
   return (
     <div className="hc:flex hc:h-full hc:flex-col">
-      <div className="hc:text-2xl">{t('importStatus.dataImport')}</div>
+      <div className="hello-csv-title hc:text-2xl">
+        {t('importStatus.dataImport')}
+      </div>
       <div className="hc:grow hc:overflow-auto">
         <div className="hc:mt-4">
           <Alert

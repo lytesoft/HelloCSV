@@ -75,7 +75,7 @@ const Input = forwardRef<HTMLInputElement, Props>(
           onChange={(e) =>
             onChange?.(getParsedValue(e)) ?? setLocalValue(getParsedValue(e))
           }
-          className={`${classes} ${iconBuilder != null ? 'hc:pl-10' : ''} ${clearable ? 'hc:pr-10' : ''} hc:focus:outline-hello-csv-primary hc:bg-hello-csv-surface hc:text-hello-csv-text hc:outline-hello-csv-border-strong hc:placeholder:text-hello-csv-text-subtle hc:col-start-1 hc:row-start-1 hc:block hc:rounded-md hc:px-3 hc:py-1.5 hc:text-base hc:outline-1 hc:-outline-offset-1 hc:focus:outline-2 hc:focus:-outline-offset-2 hc:sm:text-sm/6`}
+          className={`hello-csv-input ${classes} ${iconBuilder != null ? 'hc:pl-10' : ''} ${clearable ? 'hc:pr-10' : ''} hc:focus:outline-hello-csv-primary hc:bg-hello-csv-surface hc:text-hello-csv-text hc:outline-hello-csv-border-strong hc:placeholder:text-hello-csv-text-subtle hc:col-start-1 hc:row-start-1 hc:block hc:rounded-md hc:px-3 hc:py-1.5 hc:text-base hc:outline-1 hc:-outline-offset-1 hc:focus:outline-2 hc:focus:-outline-offset-2 hc:sm:text-sm/6`}
           onBlur={(e) => onBlur?.(getParsedValue(e))}
         />
         {iconBuilder?.({

@@ -89,7 +89,7 @@ export default function Button({
   onClick,
   withFullWidth,
 }: Props) {
-  const componentClassName = baseClasses({ variant, disabled, withFullWidth });
+  const componentClassName = `hello-csv-button hello-csv-button-${variant ?? 'primary'} ${baseClasses({ variant, disabled, withFullWidth })}`;
 
   return (
     <div

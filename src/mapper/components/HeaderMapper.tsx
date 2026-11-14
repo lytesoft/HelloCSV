@@ -63,7 +63,7 @@ export default function HeaderMapper({
 
   return (
     <div className="hc:flex hc:h-full hc:flex-col">
-      <div className="hc:flex-none hc:text-2xl">
+      <div className="hello-csv-title hc:flex-none hc:text-2xl">
         {t('mapper.reviewAndConfirm')}
       </div>
       <div className="hc:min-h-0 hc:flex-auto">
