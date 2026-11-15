@@ -11,6 +11,7 @@ export type ImporterValidatorType = 'regex_matches' | 'required' | 'unique' | 'i
 export interface UniqueValidatorDefinition extends ImporterValidatorDefinitionBase {
     validate: 'unique';
     caseInsensitive?: boolean;
+    getKey?: (value: ImporterOutputFieldType, row: SheetRow) => string | number | null | undefined;
 }
 export type ImporterValidatorDefinition = RequiredValidatorDefinition | UniqueValidatorDefinition | ImporterValidatorDefinitionBase | MultiIncludesValidatorDefinition | IncludesValidatorDefinition | CustomValidatorDefinition | RegexValidatorDefinition | EmailValidatorDefinition | PhoneNumberValidatorDefinition | PostalCodeValidatorDefinition | DateValidatorDefinition;
 export interface ImporterValidatorDefinitionBase {

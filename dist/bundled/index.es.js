@@ -1,6 +1,6 @@
 var qc = Object.defineProperty;
 var Yc = (e, t, n) => t in e ? qc(e, t, { enumerable: !0, configurable: !0, writable: !0, value: n }) : e[t] = n;
-var be = (e, t, n) => Yc(e, typeof t != "symbol" ? t + "" : t, n);
+var ye = (e, t, n) => Yc(e, typeof t != "symbol" ? t + "" : t, n);
 var Mn, de, Bs, Mt, $i, js, to, Us, No, no, ro, Ws, xn = {}, Gs = [], Kc = /acit|ex(?:s|g|n|p|$)|rph|grid|ows|mnc|ntw|ine[ch]|zoo|^ord|itera/i, ur = Array.isArray;
 function dt(e, t) {
   for (var n in t) e[n] = t[n];
@@ -5725,7 +5725,7 @@ function Bm({ children: e }) {
   }
   return /* @__PURE__ */ h(Wa.Provider, { value: { t: o, tHtml: i }, children: e });
 }
-function ye() {
+function be() {
   return he(Wa);
 }
 function Eo({
@@ -5738,7 +5738,7 @@ function Eo({
   onConfirm: s,
   variant: l = "default"
 }) {
-  const { t: a } = ye(), c = {
+  const { t: a } = be(), c = {
     danger: {
       icon: /* @__PURE__ */ h(
         em,
@@ -6083,7 +6083,7 @@ const Qa = /* @__PURE__ */ fe(bg), ec = fe(
     type: l = "text",
     ...a
   }, c) => {
-    const { t: u } = ye(), [d, p] = Y(e);
+    const { t: u } = be(), [d, p] = Y(e);
     se(() => {
       p(e);
     }, [e]);
@@ -6153,7 +6153,7 @@ function At({
   searchInputAsFilter: f = !1,
   ...v
 }) {
-  const { t: w } = ye(), [m, _] = Y(""), y = U(null);
+  const { t: w } = be(), [m, _] = Y(""), y = U(null);
   se(() => {
     var R;
     d && ((R = y.current) == null || R.focus());
@@ -7128,7 +7128,7 @@ function Vg({
   onSelectYear: d,
   onDayKeyDown: p
 }) {
-  const { t: f } = ye(), v = Math.floor(t.year() / 10) * 10, w = Og(t), m = at(), _ = n ?? t.startOf("month"), y = e === "days" ? t.format("MMMM YYYY") : e === "months" ? t.format("YYYY") : `${v} - ${v + 9}`;
+  const { t: f } = be(), v = Math.floor(t.year() / 10) * 10, w = Og(t), m = at(), _ = n ?? t.startOf("month"), y = e === "days" ? t.format("MMMM YYYY") : e === "months" ? t.format("YYYY") : `${v} - ${v + 9}`;
   return /* @__PURE__ */ h("div", { className: "hc:w-56", children: [
     /* @__PURE__ */ h("div", { className: "hc:mb-2 hc:flex hc:items-center hc:justify-between", children: [
       /* @__PURE__ */ h(
@@ -7246,7 +7246,7 @@ function Hg({
   onPartChange: l,
   onMeridiem: a
 }) {
-  const { t: c } = ye();
+  const { t: c } = be();
   return /* @__PURE__ */ h(
     "div",
     {
@@ -7332,7 +7332,7 @@ function Bg({
   seedText: c,
   ...u
 }) {
-  const { t: d } = ye(), p = U(null), f = U(null), v = U(null), w = U({}), m = Dg({
+  const { t: d } = be(), p = U(null), f = U(null), v = U(null), w = U({}), m = Dg({
     value: e,
     mode: t,
     outputFormat: n,
@@ -7969,9 +7969,9 @@ async function gc(e, t, n) {
 }
 class mt {
   constructor(t) {
-    be(this, "definition");
+    ye(this, "definition");
     // Empty cells only reach validators that opt in; presence is `required`'s job.
-    be(this, "validatesEmptyValues", !1);
+    ye(this, "validatesEmptyValues", !1);
     this.definition = t;
   }
   isValid(t, n) {
@@ -7987,8 +7987,8 @@ class iv extends mt {
 class sv extends mt {
   constructor(n) {
     super(n);
-    be(this, "key");
-    be(this, "validateFn");
+    ye(this, "key");
+    ye(this, "validateFn");
     this.key = n.key, this.validateFn = n.validateFn, this.validatesEmptyValues = n.validatesEmptyValues ?? !0;
   }
   isValid(n, r) {
@@ -7998,10 +7998,10 @@ class sv extends mt {
 class lv extends mt {
   constructor(n) {
     super(n);
-    be(this, "dateType");
-    be(this, "typeArguments");
-    be(this, "min");
-    be(this, "max");
+    ye(this, "dateType");
+    ye(this, "typeArguments");
+    ye(this, "min");
+    ye(this, "max");
     this.dateType = n.dateType, this.typeArguments = {
       outputFormat: n.outputFormat,
       displayFormat: n.displayFormat,
@@ -8027,7 +8027,7 @@ function av(e) {
 class Tr extends mt {
   constructor(n) {
     super(n);
-    be(this, "regexp");
+    ye(this, "regexp");
     typeof n.regex == "object" ? this.regexp = n.regex : this.regexp = new RegExp(av(n.regex));
   }
   isValid(n) {
@@ -8046,7 +8046,7 @@ class cv extends Tr {
 class uv extends mt {
   constructor(n) {
     super(n);
-    be(this, "values");
+    ye(this, "values");
     if (this.values = n.values, !this.values)
       throw new Error("Missing `values` for `includes` validator");
   }
@@ -8064,8 +8064,8 @@ class dv extends mt {
 class fv extends mt {
   constructor(n) {
     super(n);
-    be(this, "delimiter");
-    be(this, "values");
+    ye(this, "delimiter");
+    ye(this, "values");
     if (this.delimiter = n.delimiter || /[,|]/, this.values = n.values, !this.values)
       throw new Error("Missing values for `multi_includes` validator");
   }
@@ -8096,8 +8096,8 @@ class pv extends Tr {
 class mv extends mt {
   constructor(n) {
     super(n);
-    be(this, "when");
-    be(this, "validatesEmptyValues", !0);
+    ye(this, "when");
+    ye(this, "validatesEmptyValues", !0);
     this.when = n.when ?? (() => !0);
   }
   isValid(n, r) {
@@ -8108,9 +8108,10 @@ class mv extends mt {
 class gv extends mt {
   constructor(n) {
     super(n);
-    be(this, "seen");
-    be(this, "caseInsensitive");
-    this.caseInsensitive = n.caseInsensitive || !1, this.seen = /* @__PURE__ */ new Set();
+    ye(this, "seen");
+    ye(this, "caseInsensitive");
+    ye(this, "getKey");
+    this.caseInsensitive = n.caseInsensitive || !1, this.getKey = n.getKey, this.seen = /* @__PURE__ */ new Set();
   }
   comparableValue(n) {
     if (Array.isArray(n)) {
@@ -8119,11 +8120,18 @@ class gv extends mt {
     }
     return this.caseInsensitive && typeof n == "string" ? n.toLocaleLowerCase() : n;
   }
-  isValid(n) {
-    const r = this.comparableValue(n);
-    if (this.seen.has(r))
+  isValid(n, r) {
+    let o = n;
+    if (this.getKey) {
+      const s = this.getKey(n, r);
+      if (s == null || s === "")
+        return;
+      o = s;
+    }
+    const i = this.comparableValue(o);
+    if (this.seen.has(i))
       return this.definition.error || "validators.unique";
-    this.seen.add(r);
+    this.seen.add(i);
   }
 }
 function vv(e) {
@@ -8565,7 +8573,7 @@ function Bv(e) {
   return t;
 }
 function jv(e, t) {
-  const { t: n } = ye();
+  const { t: n } = be();
   return e.flatMap(
     (o) => o.columns.filter((i) => Or(i)).map((i) => ({
       label: `${i.label}${Mr(i) ? " *" : ""}`,
@@ -8596,7 +8604,7 @@ function Gv({
   csvHeader: t,
   column: n
 }) {
-  const { t: r, tHtml: o } = ye();
+  const { t: r, tHtml: o } = be();
   return t && /* @__PURE__ */ h("div", { className: "hc:border-hello-csv-border-strong hc:bg-hello-csv-surface hc:m-4 hc:rounded-sm hc:border hc:px-4 hc:sm:px-6 hc:lg:px-8", children: [
     (n == null ? void 0 : n.description) && /* @__PURE__ */ h("div", { className: "hc:border-hello-csv-border-strong hc:border-b hc:py-4 hc:text-sm", children: [
       /* @__PURE__ */ h("div", { className: "hc:text-hello-csv-text hc:font-semibold", children: n.label }),
@@ -9186,7 +9194,7 @@ function o0(e, t) {
 }
 class Nn {
   constructor(t) {
-    be(this, "definition");
+    ye(this, "definition");
     this.definition = t;
   }
   async transform(t) {
@@ -9200,8 +9208,8 @@ class Nn {
 class i0 extends Nn {
   constructor(n) {
     super(n);
-    be(this, "key");
-    be(this, "parse");
+    ye(this, "key");
+    ye(this, "parse");
     const { key: r, transformFn: o } = n;
     this.key = r, this.parse = o;
   }
@@ -9359,7 +9367,7 @@ async function f0(e, t, n = {}) {
 class h0 {
   // Series of transformations
   constructor(t = []) {
-    be(this, "steps");
+    ye(this, "steps");
     this.steps = t;
   }
   push(t) {
@@ -9410,9 +9418,9 @@ async function m0(e, t) {
 }
 class $c {
   constructor(t, n) {
-    be(this, "initialState");
-    be(this, "importerDefinition");
-    be(this, "buildSteps");
+    ye(this, "initialState");
+    ye(this, "importerDefinition");
+    ye(this, "buildSteps");
     this.importerDefinition = t, this.initialState = n ?? Ln(t.sheets), this.buildSteps = [];
   }
   async getState(t = "change") {
@@ -9523,7 +9531,7 @@ const cr = class cr extends $c {
     }
   }
 };
-be(cr, "actionTypesThatRequireProcessing", /* @__PURE__ */ new Set([
+ye(cr, "actionTypesThatRequireProcessing", /* @__PURE__ */ new Set([
   "DATA_MAPPED",
   "CELL_CHANGED",
   "REMOVE_ROWS",
@@ -9695,7 +9703,7 @@ function b0({
   onBack: n
 }) {
   var T;
-  const { columnMappings: r, parsedFile: o } = ot(), { sheets: i } = ze(), { t: s } = ye(), [l, a] = Y(null), c = r ?? [], u = o, d = u.data, p = u.meta.fields, f = jv(
+  const { columnMappings: r, parsedFile: o } = ot(), { sheets: i } = ze(), { t: s } = be(), [l, a] = Y(null), c = r ?? [], u = o, d = u.data, p = u.meta.fields, f = jv(
     i,
     c
   ), v = Wv(
@@ -11626,7 +11634,7 @@ function _w({
   errorsText: p,
   enumLabelDict: f
 }) {
-  const { t: v } = ye(), { availableActions: w } = ze(), m = zc(), _ = m.isEditing(e), y = m.isActive(e), S = m.isSelected(e), E = U(null), T = U(null), O = U(!1), M = bi(l) || !w.includes("editRows");
+  const { t: v } = be(), { availableActions: w } = ze(), m = zc(), _ = m.isEditing(e), y = m.isActive(e), S = m.isSelected(e), E = U(null), T = U(null), O = U(!1), M = bi(l) || !w.includes("editRows");
   function x(z) {
     M || m.startEdit(e, z);
   }
@@ -11869,7 +11877,7 @@ function xw({
   gridDims: a,
   hasCheckboxColumn: c
 }) {
-  const { t: u } = ye(), d = zc();
+  const { t: u } = be(), d = zc();
   function p(g, b) {
     return r.filter(
       (C) => C.columnId === g && C.rowIndex === b
@@ -12053,7 +12061,7 @@ function xw({
   );
 }
 function Sw({ column: e }) {
-  const { t } = ye(), n = bi(e);
+  const { t } = be(), n = bi(e);
   return /* @__PURE__ */ h(
     "div",
     {
@@ -12100,7 +12108,7 @@ function Cw({
   canRedo: y,
   enumLabelDict: S
 }) {
-  const { csvDownloadMode: E, availableActions: T } = ze(), { t: O } = ye(), { processingInProgress: M } = ot(), [x, g] = Y(!1), [b, C] = Y(!1);
+  const { csvDownloadMode: E, availableActions: T } = ze(), { t: O } = be(), { processingInProgress: M } = ot(), [x, g] = Y(!1), [b, C] = Y(!1);
   function $(R) {
     const P = e.columns.find(
       (D) => D.id === R
@@ -12992,7 +13000,7 @@ function Lw({
     sheetData: o,
     importStatistics: i,
     sheetDefinitions: s
-  } = ot(), l = gi(o), { csvDownloadMode: a } = ze(), { t: c } = ye(), u = Uc(l);
+  } = ot(), l = gi(o), { csvDownloadMode: a } = ze(), { t: c } = be(), u = Uc(l);
   return /* @__PURE__ */ h("div", { className: "hc:flex hc:flex-row hc:px-4 hc:pt-3 hc:pb-2", children: /* @__PURE__ */ h("div", { className: "hc:flex-1 hc:space-y-4", children: [
     /* @__PURE__ */ h("div", { children: /* @__PURE__ */ h("div", { className: "hc:flex hc:flex-row", children: [
       /* @__PURE__ */ h("div", { className: "hc:my-2 hc:mr-5 hc:text-center", children: /* @__PURE__ */ h(Jp, { className: "hc:text-hello-csv-primary hc:h-8 hc:w-8" }) }),
@@ -13050,7 +13058,7 @@ function Lw({
   ] }) });
 }
 function Wc({ completedWithErrors: e, enumLabelDict: t }) {
-  const { t: n } = ye();
+  const { t: n } = be();
   return /* @__PURE__ */ h(yl, { withPadding: !1, className: "hc:h-full", children: /* @__PURE__ */ h("div", { className: "hc:flex hc:flex-col hc:py-5", children: [
     /* @__PURE__ */ h("div", { className: "hello-csv-subtitle hc:px-4 hc:pb-2 hc:text-xl", children: n("importStatus.importDetails") }),
     /* @__PURE__ */ h("div", { className: "hc:text-hello-csv-text-muted hc:px-4 hc:pb-2 hc:text-sm", children: n("importStatus.importDetailsDescription") }),
@@ -13065,7 +13073,7 @@ function Wc({ completedWithErrors: e, enumLabelDict: t }) {
   ] }) });
 }
 function Vw({ resetState: e, enumLabelDict: t }) {
-  const { sheetData: n, importStatistics: r } = ot(), { onSummaryFinished: o } = ze(), { t: i } = ye(), s = gi(n), l = Uc(s), a = (r == null ? void 0 : r.imported) ?? 0, c = !!(r != null && r.failed) || !!(r != null && r.skipped);
+  const { sheetData: n, importStatistics: r } = ot(), { onSummaryFinished: o } = ze(), { t: i } = be(), s = gi(n), l = Uc(s), a = (r == null ? void 0 : r.imported) ?? 0, c = !!(r != null && r.failed) || !!(r != null && r.skipped);
   return /* @__PURE__ */ h("div", { className: "hc:flex hc:h-full hc:flex-col", children: [
     /* @__PURE__ */ h("div", { className: "hello-csv-title hc:flex-none hc:text-2xl", children: i("importStatus.dataImport") }),
     /* @__PURE__ */ h("div", { className: "hc:grow hc:overflow-auto", children: [
@@ -13101,7 +13109,7 @@ function Hw({
   onBackToPreview: t,
   enumLabelDict: n
 }) {
-  const { t: r } = ye();
+  const { t: r } = be();
   return /* @__PURE__ */ h("div", { className: "hc:flex hc:h-full hc:flex-col", children: [
     /* @__PURE__ */ h("div", { className: "hello-csv-title hc:text-2xl", children: r("importStatus.dataImport") }),
     /* @__PURE__ */ h("div", { className: "hc:grow hc:overflow-auto", children: [
@@ -13175,7 +13183,7 @@ function Bw() {
   return /* @__PURE__ */ h(Yp, { className: "hc:text-hello-csv-success hc:absolute hc:inset-0 hc:m-auto hc:h-12 hc:w-12 hc:stroke-4" });
 }
 function jw({ resetState: e }) {
-  const { importProgress: t, mode: n } = ot(), r = n === "submit", { t: o } = ye();
+  const { importProgress: t, mode: n } = ot(), r = n === "submit", { t: o } = be();
   return /* @__PURE__ */ h("div", { className: "hc:flex hc:h-full hc:p-10", children: /* @__PURE__ */ h("div", { className: "hc:flex hc:h-full hc:w-full hc:flex-col", children: /* @__PURE__ */ h("div", { className: "hc:my-16 hc:text-center", children: [
     /* @__PURE__ */ h("div", { className: "hc:relative hc:mx-auto hc:h-24 hc:w-24", children: [
       /* @__PURE__ */ h(zw, { progress: t, pending: r }),
@@ -13244,7 +13252,7 @@ function Gw({
 }
 const qw = /* @__PURE__ */ fe(Gw);
 function Gc() {
-  const { sheets: e, preventUploadOnValidationErrors: t } = ze(), { sheetData: n, validationErrors: r, processingInProgress: o } = ot(), { t: i } = ye();
+  const { sheets: e, preventUploadOnValidationErrors: t } = ze(), { sheetData: n, validationErrors: r, processingInProgress: o } = ot(), { t: i } = be();
   return ne(() => {
     const s = Pg(e, n).map(
       (v) => ({
@@ -13285,7 +13293,7 @@ function Yw({
   sheetCountDict: t,
   idPrefix: n
 }) {
-  const { currentSheetId: r, validationErrors: o } = ot(), { sheets: i } = ze(), { byId: s } = Gc(), { t: l } = ye();
+  const { currentSheetId: r, validationErrors: o } = ot(), { sheets: i } = ze(), { byId: s } = Gc(), { t: l } = be();
   return /* @__PURE__ */ h(
     jg,
     {
@@ -13306,7 +13314,7 @@ function Yw({
   );
 }
 function Kw({ onBackToMapping: e }) {
-  const { t } = ye(), [n, r] = Y(!1);
+  const { t } = be(), [n, r] = Y(!1);
   return /* @__PURE__ */ h(pe, { children: [
     /* @__PURE__ */ h(
       Ve,
@@ -13334,7 +13342,7 @@ function Kw({ onBackToMapping: e }) {
   ] });
 }
 function Zw({ importerRequirements: e }) {
-  const { t } = ye();
+  const { t } = be();
   return /* @__PURE__ */ h("div", { className: "hc:h-full hc:w-full hc:space-y-5 hc:overflow-y-auto", children: Object.entries(e).filter(([, n]) => n.length > 0).map(([n, r]) => {
     const o = n === "required" ? "required" : "optional";
     return /* @__PURE__ */ h("div", { className: "hc:me-3", children: [
@@ -13360,14 +13368,14 @@ function Zw({ importerRequirements: e }) {
   }) });
 }
 function Xw({ importerRequirements: e }) {
-  const { t } = ye();
+  const { t } = be();
   return /* @__PURE__ */ h("div", { className: "hc:flex hc:h-full hc:flex-col hc:space-y-5", children: [
     /* @__PURE__ */ h("div", { className: "hc:me-3", children: /* @__PURE__ */ h(wi, { variant: "info", description: t("uploader.importerInformation") }) }),
     /* @__PURE__ */ h("div", { className: "hc:flex hc:min-h-0 hc:flex-1 hc:overflow-hidden", children: /* @__PURE__ */ h(Zw, { importerRequirements: e }) })
   ] });
 }
 function Jw({ setFile: e, onEnterDataManually: t }) {
-  const { maxFileSizeInBytes: n, customFileLoaders: r, allowManualDataEntry: o } = ze(), { t: i, tHtml: s } = ye(), l = U(null), [a, c] = Y(!1), [u, d] = Y(null), p = Wm.concat(
+  const { maxFileSizeInBytes: n, customFileLoaders: r, allowManualDataEntry: o } = ze(), { t: i, tHtml: s } = be(), l = U(null), [a, c] = Y(!1), [u, d] = Y(null), p = Wm.concat(
     (r == null ? void 0 : r.map((y) => y.mimeType)) ?? []
   ), f = Gm, v = ["CSV", "TSV"].concat((r == null ? void 0 : r.map((y) => y.label)) ?? []).join(", "), w = (y, S) => {
     const E = Xv(y.name);
@@ -13452,7 +13460,7 @@ function Qw({
   onFileUploaded: e,
   onEnterDataManually: t
 }) {
-  const { sheets: n } = ze(), r = Zv(n), { t: o } = ye();
+  const { sheets: n } = ze(), r = Zv(n), { t: o } = be();
   return /* @__PURE__ */ h("div", { className: "hc:flex hc:h-full hc:flex-col hc:space-y-4", children: [
     /* @__PURE__ */ h("div", { className: "hello-csv-title hc:flex-none hc:text-2xl", children: o("uploader.uploadAFile") }),
     /* @__PURE__ */ h("div", { className: "hc:flex-auto hc:md:min-h-0", children: /* @__PURE__ */ h("div", { className: "hc:flex hc:h-full hc:flex-col-reverse hc:gap-5 hc:md:flex-row", children: [
@@ -13554,7 +13562,7 @@ function ty() {
   };
 }
 function ny(e) {
-  const { sheets: t, availableActions: n } = e, { t: r } = ye(), o = U(!0), i = U(null), s = ot(), l = y0(), a = Ie(), { mode: c, currentSheetId: u, sheetData: d, columnMappings: p, validationErrors: f } = s;
+  const { sheets: t, availableActions: n } = e, { t: r } = be(), o = U(!0), i = U(null), s = ot(), l = y0(), a = Ie(), { mode: c, currentSheetId: u, sheetData: d, columnMappings: p, validationErrors: f } = s;
   se(() => {
     var L;
     if (o.current) {
