@@ -341,10 +341,12 @@ export default function SheetDataEditorCell({
     }
 
     if (columnDefinition.type === 'enum') {
-      const { values, multiple } = columnDefinition.typeArguments as {
-        values: SelectOption<string>[];
-        multiple?: boolean;
-      };
+      const { values, multiple, allowOther } =
+        columnDefinition.typeArguments as {
+          values: SelectOption<string>[];
+          multiple?: boolean;
+          allowOther?: boolean;
+        };
 
       if (multiple) {
         const optionsWithInvalidValues = buildMultiEnumEditorOptions(
@@ -381,6 +383,7 @@ export default function SheetDataEditorCell({
           searchable
           searchInputAsFilter
           clearable
+          creatable={allowOther}
           options={values}
           value={value}
           onChange={(newValue) =>

@@ -10,6 +10,7 @@ Upstream v0.6.2 plus these changes, each also offered upstream as its own pull r
 - Columns can have a `description`, shown on the upload screen, while mapping and on the sheet header.
 - Buttons, headings, tabs, inputs, alerts, badges and cards carry stable `hello-csv-*` class names, so sonas gives them its own `.btn` and heading styles.
 - The `unique` validator takes an optional `getKey(value, row)`, so uniqueness can be over a key built from the row (e.g. the same email at the same venue).
+- Single enum columns take `allowOther`: values outside the list aren't flagged, and the cell's dropdown also offers what was typed (e.g. a guest role the company hasn't defined yet).
 
 Drop a commit here once upstream has released it.
 

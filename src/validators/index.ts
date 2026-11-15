@@ -51,9 +51,10 @@ function automaticFieldValidators(
   const result: ImporterValidatorDefinition[] = [];
 
   if (columnDefinition.type === 'enum') {
-    const { values, multiple } = columnDefinition.typeArguments as {
+    const { values, multiple, allowOther } = columnDefinition.typeArguments as {
       values: SelectOption<string>[];
       multiple?: boolean;
+      allowOther?: boolean;
     };
 
     const validValues = values.map((v) => v.value);
@@ -63,7 +64,7 @@ function automaticFieldValidators(
         values: validValues,
         validate: 'multi_includes',
       });
-    } else {
+    } else if (!allowOther) {
       result.push({
         values: validValues,
         validate: 'includes',
