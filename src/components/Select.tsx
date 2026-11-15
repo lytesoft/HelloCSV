@@ -44,6 +44,11 @@ interface Props<T> {
    * never the selection. Used for grid editing.
    */
   searchInputAsFilter?: boolean;
+  /**
+   * With `searchable`, also offer the typed text as an option when no option's
+   * label matches it, so a value that isn't listed can be chosen.
+   */
+  creatable?: boolean;
   'aria-label'?: string;
 }
 
@@ -62,6 +67,7 @@ export default function Select<T>({
   autoFocus = false,
   immediate = false,
   searchInputAsFilter = false,
+  creatable = false,
   ...props
 }: Props<T>) {
   const { t } = useTranslations();
@@ -110,15 +116,50 @@ export default function Select<T>({
     }
   };
 
-  const selectedOptions = options.filter((option) => isSelected(option.value));
+  // With `creatable`, a current value that isn't listed is shown as an option,
+  // and so is the typed text, after the options it matches.
+  const typed = query.trim();
+  const isListed = (text: string) =>
+    options.some((option) =>
+      [option.label, option.value].some(
+        (listed) => String(listed).toLowerCase() === text.toLowerCase()
+      )
+    );
+  const unlistedValue =
+    creatable && !multiple && value != null && value !== ''
+      ? String(value)
+      : '';
+  const allOptions: SelectOption<T>[] =
+    unlistedValue && !isListed(unlistedValue)
+      ? [{ label: unlistedValue, value: value as T }, ...options]
+      : options;
+  const typedOption: SelectOption<T>[] =
+    creatable &&
+    searchable &&
+    typed &&
+    !isListed(typed) &&
+    typed !== unlistedValue
+      ? [
+          {
+            label: t('components.select.useValue', { value: typed }),
+            value: typed as T,
+          },
+        ]
+      : [];
+
+  const selectedOptions = allOptions.filter((option) =>
+    isSelected(option.value)
+  );
   const baseDisplayValue = selectedOptions.map((o) => o.label).join(', ');
 
-  const filteredOptions =
-    query && searchable
-      ? options.filter((option) =>
+  const filteredOptions = [
+    ...(query && searchable
+      ? allOptions.filter((option) =>
           String(option.label).toLowerCase().includes(query.toLowerCase())
         )
-      : options;
+      : allOptions),
+    ...typedOption,
+  ];
 
   const placeholderValue =
     placeholder ?? t('components.select.optionPlaceholder');

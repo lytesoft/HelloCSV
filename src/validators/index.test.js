@@ -521,6 +521,20 @@ describe('empty cells', () => {
     expect(errors).toEqual(['2:validators.includes']);
   });
 
+  it('skips the automatic enum validator when other values are allowed', async () => {
+    const errors = await validateColumn(
+      {
+        type: 'enum',
+        typeArguments: {
+          values: [{ label: 'A', value: 'a' }],
+          allowOther: true,
+        },
+      },
+      [{ c: 'a' }, { c: 'b' }, { c: '' }]
+    );
+    expect(errors).toEqual([]);
+  });
+
   it('does not count empty cells as duplicates', async () => {
     const errors = await validateColumn(
       { validators: [{ validate: 'unique' }] },
