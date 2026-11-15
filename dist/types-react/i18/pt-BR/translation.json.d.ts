@@ -8,7 +8,8 @@ declare const _default: {
       "optionPlaceholder": "Selecione uma opção",
       "noOptions": "Sem opções",
       "clear": "Limpar",
-      "invalidOption": "{{value}} (inválido)"
+      "invalidOption": "{{value}} (inválido)",
+      "useValue": "Usar \"{{value}}\""
     },
     "input": {
       "clear": "Limpar"

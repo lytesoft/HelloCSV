@@ -61,6 +61,11 @@ export interface SheetColumnReferenceDefinition extends SheetColumnBaseDefinitio
 interface SheetColumnEnumSingleTypeArguments {
     values: SelectOption<string>[];
     multiple?: false;
+    /**
+     * Also accept values that aren't in `values`: the cell isn't flagged, and
+     * its dropdown offers whatever was typed as well as the listed options.
+     */
+    allowOther?: boolean;
 }
 interface SheetColumnEnumMultipleTypeArguments {
     values: SelectOption<string>[];

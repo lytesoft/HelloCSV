@@ -26,8 +26,13 @@ interface Props<T> {
      * never the selection. Used for grid editing.
      */
     searchInputAsFilter?: boolean;
+    /**
+     * With `searchable`, also offer the typed text as an option when no option's
+     * label matches it, so a value that isn't listed can be chosen.
+     */
+    creatable?: boolean;
     'aria-label'?: string;
 }
-export default function Select<T>({ value, options, onChange, onClose, multiple, compareFunction, clearable, searchable, placeholder, classes, displayPlaceholderWhenSelected, autoFocus, immediate, searchInputAsFilter, ...props }: Props<T>): import("preact").JSX.Element;
+export default function Select<T>({ value, options, onChange, onClose, multiple, compareFunction, clearable, searchable, placeholder, classes, displayPlaceholderWhenSelected, autoFocus, immediate, searchInputAsFilter, creatable, ...props }: Props<T>): import("preact").JSX.Element;
 export {};
 //# sourceMappingURL=Select.d.ts.map
