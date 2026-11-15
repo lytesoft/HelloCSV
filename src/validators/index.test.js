@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { applyValidations, fieldIsRequired } from './';
 import {
   RegexValidator,
@@ -88,6 +88,95 @@ describe('UniqueValidator', () => {
     expect(validator.isValid('Foo')).toEqual(undefined);
     expect(validator.isValid('bar')).toEqual(undefined);
     expect(validator.isValid('foo')).toEqual('validators.unique');
+  });
+
+  it('flags only the second and later occurrences', () => {
+    const validator = buildValidatorFromDefinition({ validate: 'unique' });
+    expect(validator.isValid('a')).toEqual(undefined);
+    expect(validator.isValid('a')).toEqual('validators.unique');
+    expect(validator.isValid('a')).toEqual('validators.unique');
+  });
+
+  it('compares the key from getKey instead of the value', () => {
+    const validator = buildValidatorFromDefinition({
+      validate: 'unique',
+      getKey: (value, row) => `${row.venue}|${value}`,
+    });
+    const email = 'a@example.com';
+    expect(validator.isValid(email, { email, venue: 'Hall' })).toEqual(
+      undefined
+    );
+    expect(validator.isValid(email, { email, venue: 'Barn' })).toEqual(
+      undefined
+    );
+    expect(validator.isValid(email, { email, venue: 'Hall' })).toEqual(
+      'validators.unique'
+    );
+  });
+
+  it('passes the cell value and row to getKey', () => {
+    const getKey = vi.fn(() => 'key');
+    const validator = buildValidatorFromDefinition({
+      validate: 'unique',
+      getKey,
+    });
+    const row = { email: 'a@example.com', venue: 'Hall' };
+    validator.isValid('a@example.com', row);
+    expect(getKey).toHaveBeenCalledWith('a@example.com', row);
+  });
+
+  it('accepts number keys from getKey', () => {
+    const validator = buildValidatorFromDefinition({
+      validate: 'unique',
+      getKey: (_value, row) => row.id,
+    });
+    expect(validator.isValid('x', { id: 1 })).toEqual(undefined);
+    expect(validator.isValid('y', { id: 2 })).toEqual(undefined);
+    expect(validator.isValid('z', { id: 1 })).toEqual('validators.unique');
+  });
+
+  it('compares string keys case-insensitively when configured', () => {
+    const validator = buildValidatorFromDefinition({
+      validate: 'unique',
+      caseInsensitive: true,
+      getKey: (value, row) => `${row.venue}|${value}`,
+    });
+    expect(validator.isValid('A@example.com', { venue: 'Hall' })).toEqual(
+      undefined
+    );
+    expect(validator.isValid('a@EXAMPLE.com', { venue: 'hall' })).toEqual(
+      'validators.unique'
+    );
+  });
+
+  it('compares string keys case-sensitively by default', () => {
+    const validator = buildValidatorFromDefinition({
+      validate: 'unique',
+      getKey: (value, row) => `${row.venue}|${value}`,
+    });
+    expect(validator.isValid('a@example.com', { venue: 'Hall' })).toEqual(
+      undefined
+    );
+    expect(validator.isValid('a@example.com', { venue: 'hall' })).toEqual(
+      undefined
+    );
+  });
+
+  it('skips rows whose key is null, undefined or empty', () => {
+    const validator = buildValidatorFromDefinition({
+      validate: 'unique',
+      getKey: (_value, row) => row.key,
+    });
+    expect(validator.isValid('x', { key: null })).toEqual(undefined);
+    expect(validator.isValid('x', { key: null })).toEqual(undefined);
+    expect(validator.isValid('x', { key: undefined })).toEqual(undefined);
+    expect(validator.isValid('x', { key: undefined })).toEqual(undefined);
+    expect(validator.isValid('x', { key: '' })).toEqual(undefined);
+    expect(validator.isValid('x', { key: '' })).toEqual(undefined);
+    expect(validator.isValid('x', {})).toEqual(undefined);
+    // Skipped rows aren't recorded, so a later real key is a first occurrence.
+    expect(validator.isValid('x', { key: 'k' })).toEqual(undefined);
+    expect(validator.isValid('x', { key: 'k' })).toEqual('validators.unique');
   });
 });
 
@@ -322,6 +411,47 @@ describe('applyValidation', () => {
         validationErrors.find((e) => e.columnId === 'name' && e.rowIndex === 1)
       ).not.toBeUndefined();
     });
+  });
+
+  it('checks unique over a key built from the row', async () => {
+    const errors = await applyValidations(
+      [
+        {
+          id: 'a',
+          columns: [
+            {
+              id: 'email',
+              validators: [
+                {
+                  validate: 'unique',
+                  caseInsensitive: true,
+                  getKey: (value, row) =>
+                    row.venue ? `${row.venue}|${value}` : null,
+                },
+              ],
+            },
+            { id: 'venue' },
+          ],
+        },
+      ],
+      [
+        {
+          sheetId: 'a',
+          rows: [
+            { email: 'a@example.com', venue: 'Hall' },
+            { email: 'a@example.com', venue: 'Barn' },
+            { email: 'A@example.com', venue: 'Hall' },
+            { email: 'a@example.com' },
+            { email: 'a@example.com' },
+            { email: 'a@example.com', venue: 'Hall' },
+          ],
+        },
+      ]
+    );
+    expect(errors.map((e) => `${e.columnId}:${e.rowIndex}`)).toEqual([
+      'email:2',
+      'email:5',
+    ]);
   });
 });
 
