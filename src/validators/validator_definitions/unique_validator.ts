@@ -1,4 +1,4 @@
-import { ImporterOutputFieldType } from '../../types';
+import { ImporterOutputFieldType, SheetRow } from '../../types';
 import { UniqueValidatorDefinition } from '../types';
 import { Validator } from './base';
 
@@ -7,9 +7,12 @@ export class UniqueValidator extends Validator {
 
   caseInsensitive: boolean;
 
+  getKey: UniqueValidatorDefinition['getKey'];
+
   constructor(definition: UniqueValidatorDefinition) {
     super(definition);
     this.caseInsensitive = definition.caseInsensitive || false;
+    this.getKey = definition.getKey;
     this.seen = new Set();
   }
 
@@ -26,8 +29,17 @@ export class UniqueValidator extends Validator {
     return fieldValue;
   }
 
-  isValid(fieldValue: ImporterOutputFieldType) {
-    const comparableValue = this.comparableValue(fieldValue);
+  isValid(fieldValue: ImporterOutputFieldType, row: SheetRow) {
+    let value = fieldValue;
+    if (this.getKey) {
+      const key = this.getKey(fieldValue, row);
+      if (key == null || key === '') {
+        return;
+      }
+      value = key;
+    }
+
+    const comparableValue = this.comparableValue(value);
     if (this.seen.has(comparableValue)) {
       return this.definition.error || 'validators.unique';
     }

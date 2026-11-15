@@ -35,6 +35,13 @@ export interface UniqueValidatorDefinition
   extends ImporterValidatorDefinitionBase {
   validate: 'unique';
   caseInsensitive?: boolean;
+  // Compare a key built from the row instead of the cell's own value, e.g. the
+  // email together with another column. Rows whose key is null, undefined or
+  // '' are skipped.
+  getKey?: (
+    value: ImporterOutputFieldType,
+    row: SheetRow
+  ) => string | number | null | undefined;
 }
 
 export type ImporterValidatorDefinition =

@@ -79,6 +79,22 @@ Accepts an optional `error` message. Set `caseInsensitive` to `true` to compare
 string values case-insensitively. Empty cells are skipped, so several blank rows
 don't count as duplicates.
 
+To check uniqueness over more than the cell itself, pass `getKey(value, row)`.
+It returns the key to compare instead of the cell's value, e.g. the email
+together with another column. Rows whose key is `null`, `undefined` or `''` are
+skipped. `caseInsensitive` also applies to string keys. Only the second and
+later rows with the same key are flagged.
+
+Example:
+
+```ts
+{
+  "validate": "unique",
+  "caseInsensitive": true,
+  "getKey": (value, row) => row.venue ? `${row.venue}|${value}` : null
+}
+```
+
 ---
 
 ## regex_matches
